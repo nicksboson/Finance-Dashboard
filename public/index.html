@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Finance Data Processing and Access Control — internal management interface" />
+  <title>Finance Backend — Admin Panel</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Finance Data Processing System</h1>
+    <p class="subtitle">Role-Based Access Control Demo</p>
+  </header>
+
+  <main>
+
+    <!-- ============================
+         SECTION 1: ACTIVE USER SELECT
+         ============================ -->
+    <section id="user-context-section">
+      <h2>Active Session</h2>
+      <p class="help-text">
+        Select which user you are acting as. All API requests will be made with that user's
+        <code>x-user-id</code> header and their role will be enforced server-side.
+        <br />
+        <strong>First time?</strong> Create an <em>admin</em> user below — it will be auto-selected for you.
+        The selector refreshes automatically whenever users are created.
+      </p>
+      <div class="row">
+        <label for="active-user-select">Current User</label>
+        <select id="active-user-select">
+          <option value="">— select a user —</option>
+        </select>
+        <span id="active-user-role" class="role-badge"></span>
+      </div>
+    </section>
+
+    <!-- ============================
+         SECTION 2: USER MANAGEMENT
+         ============================ -->
+    <section id="user-section">
+      <h2>User Management</h2>
+
+      <h3>Create User <span class="access-note">(admin only)</span></h3>
+      <form id="create-user-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="user-name">Name</label>
+            <input id="user-name" type="text" placeholder="Alice Smith" required />
+          </div>
+          <div class="field">
+            <label for="user-email">Email</label>
+            <input id="user-email" type="email" placeholder="alice@example.com" required />
+          </div>
+          <div class="field">
+            <label for="user-password">Password</label>
+            <input id="user-password" type="password" placeholder="••••••••" required />
+          </div>
+          <div class="field">
+            <label for="user-role">Role</label>
+            <select id="user-role" required>
+              <option value="">— select role —</option>
+              <option value="viewer">viewer</option>
+              <option value="analyst">analyst</option>
+              <option value="admin">admin</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" id="btn-create-user">Create User</button>
+      </form>
+      <div id="user-form-msg" class="msg"></div>
+
+      <h3>All Users <span class="access-note">(admin, analyst)</span></h3>
+      <button id="btn-load-users" type="button">Load Users</button>
+      <div id="users-table-wrap">
+        <table id="users-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="users-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============================
+         SECTION 3: FINANCIAL RECORDS
+         ============================ -->
+    <section id="records-section">
+      <h2>Financial Records</h2>
+
+      <h3>Create Record <span class="access-note">(admin, analyst)</span></h3>
+      <form id="create-record-form">
+        <div class="form-grid">
+          <div class="field">
+            <label for="rec-amount">Amount</label>
+            <input id="rec-amount" type="number" min="0" step="0.01" placeholder="0.00" required />
+          </div>
+          <div class="field">
+            <label for="rec-type">Type</label>
+            <select id="rec-type" required>
+              <option value="">— select type —</option>
+              <option value="income">income</option>
+              <option value="expense">expense</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="rec-category">Category</label>
+            <input id="rec-category" type="text" placeholder="e.g. salary, rent" required />
+          </div>
+          <div class="field">
+            <label for="rec-date">Date</label>
+            <input id="rec-date" type="date" required />
+          </div>
+          <div class="field field-full">
+            <label for="rec-note">Note (optional)</label>
+            <input id="rec-note" type="text" placeholder="Optional note" />
+          </div>
+        </div>
+        <button type="submit" id="btn-create-record">Create Record</button>
+      </form>
+      <div id="record-form-msg" class="msg"></div>
+
+      <h3>View Records <span class="access-note">(all roles)</span></h3>
+      <div class="filter-row">
+        <div class="field">
+          <label for="filter-type">Filter by Type</label>
+          <select id="filter-type">
+            <option value="">All</option>
+            <option value="income">income</option>
+            <option value="expense">expense</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-category">Filter by Category</label>
+          <input id="filter-category" type="text" placeholder="e.g. salary" />
+        </div>
+        <div class="field">
+          <label for="filter-date">Filter by Date</label>
+          <input id="filter-date" type="date" />
+        </div>
+        <button id="btn-load-records" type="button">Load Records</button>
+      </div>
+
+      <div id="records-table-wrap">
+        <table id="records-table">
+          <thead>
+            <tr>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Category</th>
+              <th>Date</th>
+              <th>Note</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="records-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============================
+         SECTION 4: DASHBOARD SUMMARY
+         ============================ -->
+    <section id="dashboard-section">
+      <h2>Dashboard Summary <span class="access-note">(admin, analyst)</span></h2>
+      <button id="btn-load-summary" type="button">Load Summary</button>
+      <div id="summary-msg" class="msg"></div>
+
+      <div id="summary-cards" class="cards" style="display:none;">
+        <div class="card">
+          <div class="card-label">Total Income</div>
+          <div class="card-value" id="sum-income">—</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Total Expense</div>
+          <div class="card-value" id="sum-expense">—</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Net Balance</div>
+          <div class="card-value" id="sum-balance">—</div>
+        </div>
+      </div>
+
+      <div id="category-wrap" style="display:none;">
+        <h3>Category Totals</h3>
+        <table id="category-table">
+          <thead>
+            <tr><th>Type</th><th>Category</th><th>Total</th></tr>
+          </thead>
+          <tbody id="category-tbody"></tbody>
+        </table>
+      </div>
+
+      <div id="recent-wrap" style="display:none;">
+        <h3>Recent Transactions (last 5)</h3>
+        <table id="recent-table">
+          <thead>
+            <tr><th>Amount</th><th>Type</th><th>Category</th><th>Date</th><th>Note</th></tr>
+          </thead>
+          <tbody id="recent-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Finance Data Processing System &mdash; Backend Architecture Demo</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

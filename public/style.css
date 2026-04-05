@@ -1,0 +1,342 @@
+/* ================================================
+   Finance Backend UI — Plain Colors, No Gradients
+   Palette: white (#fff), light gray (#f4f4f4, #e0e0e0),
+            mid gray (#999, #555), dark (#222), black (#000)
+   ================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  background-color: #f4f4f4;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #222;
+  color: #fff;
+  padding: 18px 32px;
+  border-bottom: 3px solid #000;
+}
+
+header h1 {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+header .subtitle {
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+/* Main layout */
+main {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+section {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+section h2 {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 2px solid #222;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+  color: #000;
+}
+
+section h3 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 18px 0 10px;
+  color: #333;
+}
+
+.access-note {
+  font-size: 11px;
+  color: #888;
+  font-weight: normal;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.help-text {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+/* Forms */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-full {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 11px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select {
+  border: 1px solid #bbb;
+  background: #fff;
+  padding: 6px 8px;
+  font-size: 13px;
+  font-family: inherit;
+  color: #222;
+  outline: none;
+  width: 100%;
+}
+
+input:focus,
+select:focus {
+  border-color: #222;
+}
+
+/* Buttons */
+button {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #000;
+}
+
+button:active {
+  background: #444;
+}
+
+/* Row and filter */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.filter-row .field {
+  flex: 1;
+  min-width: 140px;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+th {
+  background: #222;
+  color: #fff;
+  text-align: left;
+  padding: 7px 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 11px;
+}
+
+td {
+  padding: 7px 10px;
+  border-bottom: 1px solid #e0e0e0;
+  color: #333;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:nth-child(even) td {
+  background: #f9f9f9;
+}
+
+/* Action buttons inside tables */
+.btn-delete {
+  background: #555;
+  padding: 4px 10px;
+  font-size: 11px;
+}
+
+.btn-delete:hover {
+  background: #000;
+}
+
+/* Messages */
+.msg {
+  margin-top: 8px;
+  font-size: 12px;
+  padding: 6px 10px;
+  min-height: 28px;
+}
+
+.msg.success {
+  background: #f0f0f0;
+  border-left: 3px solid #222;
+  color: #222;
+}
+
+.msg.error {
+  background: #f8f0f0;
+  border-left: 3px solid #888;
+  color: #444;
+}
+
+/* Role badge */
+.role-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 8px;
+  background: #222;
+  color: #fff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  min-width: 20px;
+}
+
+/* Summary cards */
+.cards {
+  display: flex;
+  gap: 16px;
+  margin: 14px 0;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 180px;
+  border: 1px solid #ccc;
+  padding: 14px 18px;
+  background: #f9f9f9;
+}
+
+.card-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.card-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Negative balance */
+.negative {
+  color: #555;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 14px;
+  font-size: 11px;
+  color: #aaa;
+  border-top: 1px solid #ddd;
+  margin-top: 32px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cards {
+    flex-direction: column;
+  }
+}
+
+/* User Management Actions */
+td select {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background: white;
+  width: auto;
+  font-size: 11px;
+}
+
+.btn-update-user, .btn-delete-user {
+  padding: 5px 10px;
+  font-size: 10px;
+  margin-right: 4px;
+}
+
+.btn-delete-user {
+  background: #555;
+  color: #fff;
+}
+
+.btn-delete-user:hover {
+  background: #000;
+}
+
+.btn-update-user {
+  background: #999;
+  color: #fff;
+}
+
+.btn-update-user:hover {
+  background: #222;
+}
+
