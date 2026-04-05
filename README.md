@@ -129,10 +129,6 @@ The project follows a modular, scalable architecture to ensure separation of con
 * Service Layer Pattern: Business logic is separated from controllers to make the code more testable and reusable.
 * Aggregation over Computation: All financial math is performed inside the database via MongoDB pipelines to optimize performance for large datasets.
 
-## Limitations
-* Mock Authentication: Uses direct ID headers for simplicity in line with assessment requirements; for production, JWT or OAuth would be implemented.
-* No Advanced Pagination: Current implementation returns standard lists; pagination would be added for enterprise-level scaling.
-
 ---
 
 ## Conclusion
